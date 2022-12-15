@@ -132,7 +132,22 @@ void fft_r2c_batch_cufft(double* a) {
     cudaFree(x_usm);
 }
 
-int main() {
+int main(int argc, char** argv) {
+    try {
+
+         if (argc != 4) throw 42;
+         sscanf(argv[1], "%d", &nx);
+         sscanf(argv[2], "%d", &nq1);
+         sscanf(argv[3], "%d", &n2ft3d);
+         std::cout << "Test nx , nq1, n2ft3d = " << nx << ","<< nq1 << ","<< n2ft3d << std::endl;
+    }
+        catch ( int err)
+        {
+        std::cout << "Use as: ./program <int nb> <int nc>" <<std::endl;
+        std::cout << "example : ./program 32 544 34816" <<std::endl;
+                return -1;
+        }
+
 
     double* inout_fftpack = new double[n2ft3d];
     double* inout_nonbatch_cufft = new double[n2ft3d];
