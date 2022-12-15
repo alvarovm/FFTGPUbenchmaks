@@ -13,7 +13,7 @@ fflag =  -L./fftpack -lfft -lcufft
 CXXFLAGS = -I./fftpack
 lflag =
 INCLUDES = -I./fftpack
-LIBS := -L./fftpack -lfft -lcufft
+LIBS := -L./fftpack -lfft -lcufft -lgomp
 
 
 # targets
