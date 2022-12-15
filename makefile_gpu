@@ -9,9 +9,9 @@ lib = libfft.a
 # compiler tools
 CXX = nvcc
 #fflag = -o2 -cpp -ffast-math -march=native -funroll-loops -fno-protect-parens -flto -fcheck=all -fallow-argument-mismatch 
-fflag =  -L./fftpack -lfft -lcufft 
+FFLAG =  -L./fftpack -lfft -lcufft 
 CXXFLAGS = -I./fftpack
-lflag =
+LFLAG =
 INCLUDES = -I./fftpack
 LIBS := -L./fftpack -lfft -lcufft -lgomp
 
@@ -22,25 +22,17 @@ LIBS := -L./fftpack -lfft -lcufft -lgomp
 
 all: $(EXE)
 
-%.x: %.cpp
+%.x: %.cpp $(lib)
 	${CXX} ${CFLAGS} ${INCLUDES} -o $@ $*.cpp ${LIBS}
 
-lib/libfft.a:
+$(lib):
 	$(MAKE) -C fftpack all
 
-#${CXX} ${CFLAGS} ${INCLUDES} -o $@ ${SOURCES} ${LIBS}
-
-
-
-$(lib): $(OBJECTS)
-	$(ar) rcs libfft.a $(OBJECTS)
-#	@mkdir -p $(lib_dir)
-#	$(ld) -shared -fpic $(objs) -o $(lib_dir)lib$(lib).dll.a
-#	@mkdir -p $(lib_dir)include
-#	@cp -f $(obj_dir)*.mod $(lib_dir)include
-#
 clean:
 	rm -f *.x
+
+veryclean: clean
+	$(MAKE) -C fftpack clean
 #
 #test:
 #	@mkdir -p $(example_dir)
