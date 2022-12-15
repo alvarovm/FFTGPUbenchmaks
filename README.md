@@ -37,8 +37,8 @@ make -f makefile_sycl
 * [@alvarovm](https://github.com/alvarovm) (editor) 
 
 
-# Copyright
-MIT licence, Argonne National Laboratory, Argonne UChicago LLC.
+## Copyright
+MIT licence, Argonne National Laboratory, Argonne UChicago LLC. \\
 FFTPACK public domain.
 
 
