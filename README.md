@@ -6,6 +6,6 @@ Colletion of routines to compare FFT routines in oneMKL and cuFFT.
 ---
 
 ## Authors
-* Abisheck Bausetty (main) [@abagusetty](https://github.com/abagusetty)
+* Abisheck Bagusetty (main) [@abagusetty](https://github.com/abagusetty)
 * [@alvarovm](https://github.com/alvarovm) (editor) 
 
