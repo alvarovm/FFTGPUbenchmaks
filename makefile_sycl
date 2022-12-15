@@ -1,0 +1,47 @@
+
+SOURCES := $(wildcard F*.cpp)
+OBJS := $(patsubst %.cpp,%.o,$(SOURCES))
+
+EXE     = $(patsubst %.cpp,%.x,$(SOURCES))
+
+lib = libfft.a
+
+# compiler tools
+CXX = dpcpp
+#fflag = -o2 -cpp -ffast-math -march=native -funroll-loops -fno-protect-parens -flto -fcheck=all -fallow-argument-mismatch 
+fflag =  -L./fftpack -lfft 
+CXXFLAGS = -I./fftpack
+lflag =
+INCLUDES = -I./fftpack
+LIBS := -DMKL_ILP64 -lmkl_sycl -lmkl_intel_ilp64 -lmkl_sequential -lmkl_core -L./fftpack -lfft 
+
+
+# targets
+.PHONY: all
+#all: $(FOBJ)
+
+all: $(EXE)
+
+%.x: %.cpp
+	${CXX} ${CFLAGS} ${INCLUDES} -o $@ $*.cpp ${LIBS}
+
+lib/libfft.a:
+	$(MAKE) -C fftpack all
+
+#${CXX} ${CFLAGS} ${INCLUDES} -o $@ ${SOURCES} ${LIBS}
+
+
+
+$(lib): $(OBJECTS)
+	$(ar) rcs libfft.a $(OBJECTS)
+#	@mkdir -p $(lib_dir)
+#	$(ld) -shared -fpic $(objs) -o $(lib_dir)lib$(lib).dll.a
+#	@mkdir -p $(lib_dir)include
+#	@cp -f $(obj_dir)*.mod $(lib_dir)include
+#
+clean:
+	rm -f *.x
+#
+#test:
+#	@mkdir -p $(example_dir)
+#	cd $(example_dir); ../$(exe_dir)$(exe)
