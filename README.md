@@ -36,3 +36,9 @@ make -f makefile_sycl
 * Abisheck Bagusetty (main) [@abagusetty](https://github.com/abagusetty)
 * [@alvarovm](https://github.com/alvarovm) (editor) 
 
+
+# Copyright
+MIT licence, Argonne National Laboratory, Argonne UChicago LLC.
+FFTPACK public domain.
+
+
