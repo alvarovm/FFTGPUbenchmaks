@@ -15,7 +15,7 @@ git clone  git@github.com:alvarovm/FFTGPUbenchmaks.git
 ```
 qsub  -I -t 30  -n 1 -q gpu_v100_smx2_debug //login to a CUDA node
 module purge
-module add cuda gcc
+module add gcc
 cd FFTGPUbenchmaks
 make -f makefile_cuda
 ```
@@ -38,7 +38,8 @@ make -f makefile_sycl
 
 
 ## Copyright
-MIT licence, Argonne National Laboratory, Argonne UChicago LLC. \\
+MIT licence, Argonne National Laboratory, Argonne UChicago LLC. 
+
 FFTPACK public domain.
 
 
